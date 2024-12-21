@@ -12,7 +12,11 @@ import { io } from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../animations/typing.json";
 
-const ENDPOINT = "http://localhost:4000";
+// const ENDPOINT = "http://localhost:4000";
+// const ENDPOINT = "http://13.126.68.136:4000";
+const ENDPOINT = "https://apipinzz.onrender.com";
+
+
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {

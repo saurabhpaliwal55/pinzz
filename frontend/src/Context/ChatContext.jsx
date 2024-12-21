@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(()=>{
+    return JSON.parse(localStorage.getItem("userInfo")) || null;
+});
   const [selectedChat, setSelectedChat] = useState();
   const [chats, setChats] = useState([]);
   const [notifications, setNotifications] = useState([]);
