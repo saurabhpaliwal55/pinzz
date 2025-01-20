@@ -8,6 +8,7 @@ import UserListItem from "./UserListItem";
 import { usePinzzState } from "../../Context/ChatContext";
 import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
+import { API_URL } from "../../utils/confog";
 
 const SideDrawer = () => {
   const [open, setOpen] = useState(false);
@@ -49,7 +50,7 @@ const SideDrawer = () => {
     }
     try {
       setLoading(true)
-      const { data } = await axios.get(`/api/user?search=${search}`)      
+      const { data } = await axios.get(`/${API_URL}/user?search=${search}`)      
       setSearchResult(data);
       setLoading(false)
     } catch (error) {
@@ -60,8 +61,8 @@ const SideDrawer = () => {
   const accessChat = async(userId) =>{
     try {
       setLoadingChat(true);
-      const { data } = await axios.post("/api/chat",{ userId });
-      const { data: updatedChats } = await axios.get("/api/chat");
+      const { data } = await axios.post(`/${API_URL}/chat`,{ userId });
+      const { data: updatedChats } = await axios.get(`/${API_URL}/chat`);
       // if (!chats.find((c) => c._id === data._id)) {
       //   setChats((prevChats) => [...prevChats,data]);      
       // }

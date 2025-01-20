@@ -11,10 +11,11 @@ import ScrollableChats from "./ScrollableChats";
 import { io } from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../animations/typing.json";
+import { API_URL } from "../utils/confog";
 
 // const ENDPOINT = "http://localhost:4000";
-// const ENDPOINT = "http://13.126.68.136:4000";
-const ENDPOINT = "https://apipinzz.onrender.com";
+const ENDPOINT = API_URL
+// const ENDPOINT = "https://apipinzz.onrender.com";
 
 
 var socket, selectedChatCompare;
@@ -51,7 +52,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     if ((e.key === "Enter" || e.type === "click") && newMessage) {
       setNewMessage("");
       try {
-        const { data } = await axios.post("/api/message", {
+        const { data } = await axios.post(`/${API_URL}/message`, {
           content: newMessage,
           chatId: selectedChat._id,
         });
@@ -92,7 +93,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }
     try {
       setLoading(true);
-      const { data } = await axios.get(`/api/message/${selectedChat._id}`);
+      const { data } = await axios.get(`/${API_URL}/message/${selectedChat._id}`);
       setMessages(data.message);
       setLoading(false);
       socket.emit("join chat", selectedChat._id);

@@ -10,6 +10,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import UserListItem from "./UserListItem";
 import UserBadgeIcon from "./UserBadgeIcon";
+import { API_URL } from "../../utils/confog";
 
 const GroupChatModel = ({ children }) => {
   const [open, setOpen] = useState(false);
@@ -57,7 +58,7 @@ const GroupChatModel = ({ children }) => {
     }
     try {
       setLoading(true);
-      const { data } = await axios.get(`/api/user?search=${query}`);
+      const { data } = await axios.get(`/${API_URL}/user?search=${query}`);
       setSearchResult(data);
       console.log(data);
       setLoading(false);
@@ -78,11 +79,11 @@ const GroupChatModel = ({ children }) => {
         return;
     }
     try {
-        const { data } = await axios.post("/api/chat/group",{
+        const { data } = await axios.post(`/${API_URL}/chat/group`,{
             groupName:groupChatName,
             users:JSON.stringify(selectedUser.map((u)=>u._id))
         })
-        const { data: updatedChats } = await axios.get("/api/chat");
+        const { data: updatedChats } = await axios.get(`/${API_URL}/chat`);
         setChats(updatedChats);
         toast.success("Group created successfully",toastSuccessOptions)
         setOpen(false);

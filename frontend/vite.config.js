@@ -6,9 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server:{
     proxy:{
-      // '/api':"http://localhost:4000"
-      // '/api':"http://13.126.68.136:4000"
-      '/api':"https://apipinzz.onrender.com"
+      '/api':"http://localhost:4000"
+      // '/api':"https://apipinzz.onrender.com"
     }
   }
 })

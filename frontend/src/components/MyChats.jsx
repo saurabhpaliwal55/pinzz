@@ -4,6 +4,7 @@ import axios from "axios";
 import ChatLoading from "./misc/ChatLoading";
 import { getSender } from "../utils/chatLogics";
 import GroupChatModel from "./misc/GroupChatModel";
+import { API_URL } from "../utils/confog";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -12,7 +13,7 @@ const MyChats = ({ fetchAgain }) => {
 
   const fetchChats = async () => {
     try {
-      const { data } = await axios.get("/api/chat");
+      const { data } = await axios.get(`/${API_URL}/chat`);
       setChats(data);
     } catch (error) {
       console.log(error);

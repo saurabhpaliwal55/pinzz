@@ -9,6 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
 import { toast } from "react-toastify";
 import UserListItem from "./UserListItem";
+import { API_URL } from "../../utils/confog";
 
 const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain,fetchMessages }) => {
   const [open, setOpen] = useState(false);
@@ -55,7 +56,7 @@ const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain,fetchMessages }) => {
     }
     try {
       setLoading(true);
-      const { data } = await axios.put("/api/chat/groupRemove", {
+      const { data } = await axios.put(`/${API_URL}/chat/groupRemove`, {
         chatId: selectedChat._id,
         userId: userToRemove._id,
       });
@@ -72,7 +73,7 @@ const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain,fetchMessages }) => {
     if (!groupChatName) return;
     try {
       setRenameLoading(true);
-      const { data } = await axios.put("/api/chat/rename", {
+      const { data } = await axios.put(`/${API_URL}/chat/rename`, {
         chatId: selectedChat._id,
         chatName: groupChatName,
       });
@@ -91,7 +92,7 @@ const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain,fetchMessages }) => {
     }
     try {
       setLoading(true);
-      const { data } = await axios.get(`/api/user?search=${query}`);
+      const { data } = await axios.get(`/${API_URL}/user?search=${query}`);
       setSearchResult(data);
       console.log(data);
       setLoading(false);
@@ -112,7 +113,7 @@ const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain,fetchMessages }) => {
 
     try {
       setLoading(true);
-      const { data } = await axios.put("/api/chat/groupAdd", {
+      const { data } = await axios.put(`/${API_URL}/chat/groupAdd`, {
         chatId: selectedChat._id,
         userId: userToAdd._id,
       });

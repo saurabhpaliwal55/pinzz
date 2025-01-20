@@ -9,6 +9,7 @@ import NotificationDrawer from "./misc/NotificationDrawer";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../utils/confog";
 
 const Navbar = () => {
   const { user } = usePinzzState();
@@ -36,7 +37,7 @@ const Navbar = () => {
   };
 
   const logOutHandler = async()=>{
-    const response  = await axios.post("/api/user/logout");
+    const response  = await axios.post(`${API_URL}/user/logout`);
     if(response.status == 200){
       localStorage.removeItem("userData");
       toast.success("LoggedOut successfully",toastSuccessOptions);

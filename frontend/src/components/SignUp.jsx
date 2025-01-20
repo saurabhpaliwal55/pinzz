@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {useNavigate} from 'react-router-dom'
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_URL } from "../utils/confog";
 
 const SignUp = () => {
   const [logIn, setLogin] = useState(true);
@@ -51,7 +52,7 @@ const SignUp = () => {
 
     const handleLogin = async () => {
       try {
-        const response = await axios.post("api/user/login", loginCredentials);
+        const response = await axios.post(`${API_URL}/user/login`, loginCredentials);
         const user = response?.data?.loggedInUser;
         if (response.status == 200) {
           toast.success("Logged In Successfully", toastSuccessOptions);
@@ -142,7 +143,7 @@ const SignUp = () => {
         formData.append("password", signUpCredentials.password);
         formData.append("confirmPassword", signUpCredentials.confirmPassword);
         formData.append("avatar", signUpCredentials.avatar); 
-        const response = await axios.post("api/user/register", formData, {
+        const response = await axios.post(`${API_URL}/user/register`, formData, {
           headers: {
             "Content-Type": "multipart/form-data", // Specify multipart/form-data
           },
