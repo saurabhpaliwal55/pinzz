@@ -134,7 +134,7 @@ const SignUp = () => {
     };
 
     const handelSignUp = async () => {
-      console.log(signUpCredentials);
+
 
       try {
         const formData = new FormData();
