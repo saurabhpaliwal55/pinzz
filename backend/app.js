@@ -7,6 +7,7 @@ const app = express();
 app.use(cors({
     origin: "https://pinzz.netlify.app",
     credentials: true, 
+    sameSite: "None",
 }));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
