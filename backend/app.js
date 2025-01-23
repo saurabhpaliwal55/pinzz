@@ -4,7 +4,10 @@ import cors from 'cors';
 
 const app = express();
 
-app.use(cors()); // for testing only after that origin is deployed domain
+app.use(cors({
+    origin: "https://pinzz.netlify.app",
+    credentials: true, 
+}));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
